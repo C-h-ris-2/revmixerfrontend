@@ -1,9 +1,23 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import App from '/components/App';
-render((
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Login from "./components/login";
+import MainPage from "./components/mainpage";
+import Register from "./components/register";
+
+export default function App() {
+  return (
     <BrowserRouter>
-        <App />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Login />} />
+          <Route path="mainpage" element={<MainPage />} />
+          <Route path="register" element={<Register />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
-), document.getElementById('root'));
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
