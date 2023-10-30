@@ -1,5 +1,6 @@
 import {useRef,useState,useEffect} from 'react'; 
 
+
   
 function Login (){ 
     //set focus on first input
@@ -24,11 +25,18 @@ function Login (){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         //debugging
+        let res = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/list", 
+        {user, pwd});
         console.log(user,pwd);
         setUser('');
         setPwd('');
-        setSuccess(true);
+        if (res.data.code == true){
+            setSuccess(true);
+        }
     }
+
+
+
 
     return(
         // jsx checking succcess
