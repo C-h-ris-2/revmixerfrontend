@@ -1,28 +1,20 @@
 import React, {useEffect, useState, Component} from 'react'; 
- import axios from "axios";
-
-
-
+import axios from "axios";
   
 function MainPage (){ 
     const [posts, setPosts] = useState([]);
 
     const query = async () => {
-        let response = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/songlist", {});
-        if (response.data.code ==0) {
-            setPosts(response.data);
+        let response = await axios.get("http://localhost/comp333hw3/index.php/user/songlist", {});
+        if (response.data.code == 0) {
+            setPosts(response.data.data);
         } else {
+            console.error('Error fetching data');
             alert(response.data.msg); 
         }
     }
 
-    // useEffect(() => {
-    //     axios.get('http://localhost:8080/comp333-hw3-frontend/index.php/user/songlist')
-    //     .then(res => {setPosts(res.data)})
-    //     .catch(err => console.log(err))
-    // }, [])
-
-    //  query()
+    query();
 
     return (
         <div className="mainpageV">

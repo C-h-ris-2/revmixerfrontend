@@ -26,7 +26,7 @@ function Login (){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         //debugging
-        let res = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", 
+        let res = await axios.get("http://localhost/comp333-hw3-frontend/index.php/user/login", 
         {user, pwd});
         console.log(user,pwd);
         setUser('');
