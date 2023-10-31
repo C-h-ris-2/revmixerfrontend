@@ -1,7 +1,10 @@
-import React from 'react'; 
+import React, { useState} from 'react'; 
+import axios from 'axios';
   
-function Register (){ 
-    return <h1>Register</h1> 
-} 
+function RegistrationForm() {
+    const [formData, setFormData] = useState({
+      username: '',
+      password: '',
+    });
   
 export default Register;

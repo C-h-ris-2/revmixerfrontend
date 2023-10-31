@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react'; 
+import React, {useEffect, useState, Component} from 'react'; 
  import axios from "axios";
 
 
@@ -8,15 +8,21 @@ function MainPage (){
     const [posts, setPosts] = useState([]);
 
     const query = async () => {
-        let response = await axios.get("http://localhost/comp333-hw3-frontend/index.php/user/songlist", {});
+        let response = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/songlist", {});
         if (response.data.code ==0) {
-            setPosts(response.data.data);
+            setPosts(response.data);
         } else {
             alert(response.data.msg); 
         }
     }
 
-    query()
+    // useEffect(() => {
+    //     axios.get('http://localhost:8080/comp333-hw3-frontend/index.php/user/songlist')
+    //     .then(res => {setPosts(res.data)})
+    //     .catch(err => console.log(err))
+    // }, [])
+
+    //  query()
 
     return (
         <div className="mainpageV">
@@ -32,16 +38,14 @@ function MainPage (){
                             </tr>
                         </thead>
                 <tbody>
-            {posts.map((data) =>{
-                return (
-                        <tr classname="idV" key={data.id}>
-                            <p>{data.id}</p>
-                            <p>{data.username}</p>
-                            <p>{data.artist}</p>
-                            <p>{data.song}</p>
+            {posts.map((r, i) =>(
+                        <tr classname="idV" key={i}>
+                            <td>{r.id}</td>
+                            <td>{r.username}</td>
+                            <td>{r.artist}</td>
+                            <td>{r.song}</td>
                         </tr>
-                    );
-                })}
+                    ))}
             </tbody>
         </table>
         </div>

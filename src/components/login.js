@@ -26,12 +26,12 @@ function Login (){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         //debugging
-        let res = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/list", 
+        let res = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", 
         {user, pwd});
         console.log(user,pwd);
         setUser('');
         setPwd('');
-        if (res.data.code == true){
+        if (res.data.code == '1'){
             setSuccess(true);
         }
     }
