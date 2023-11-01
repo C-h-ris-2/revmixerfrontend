@@ -1,4 +1,6 @@
-import {useRef,useState,useEffect} from 'react'; 
+import {useRef,useState,useEffect} from 'react';
+import axios from 'axios'; 
+
 
   
 function Login (){ 
@@ -24,10 +26,14 @@ function Login (){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         //debugging
+        let res = await axios.get("http://localhost/comp333-hw3-frontend/index.php/user/login", 
+        {user, pwd});
         console.log(user,pwd);
         setUser('');
         setPwd('');
-        setSuccess(true);
+        if (res.data.code == '1'){
+            setSuccess(true);
+        }
     }
 
     return(
