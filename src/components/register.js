@@ -17,7 +17,7 @@ function RegistrationForm() {
   
       // Make a POST request to your API to register the user
       axios
-        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/create', formData, {withCredentials: true})
+        .post('http://localhost/comp333-hw3-frontend/index.php/user/create', formData)
         .then((response) => {
           console.log('User registered:', response.data);
           // You can redirect to a login page or display a success message here

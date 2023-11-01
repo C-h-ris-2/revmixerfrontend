@@ -36,6 +36,7 @@ function MainPage (){
                             <td>{r.username}</td>
                             <td>{r.artist}</td>
                             <td>{r.song}</td>
+                            <td>{r.rating}</td>
                         </tr>
                     ))}
             </tbody>
