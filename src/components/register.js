@@ -2,24 +2,22 @@ import React, { useState} from 'react';
 import axios from 'axios';
   
 function RegistrationForm() {
-    const [formData, setFormData] = useState({
-      username: '',
-      password: '',
-    });
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-    };
+    const [username, setUsername] = useState('');
+    const[password, setPassword] = useState('');
+      
+    // const handleChange = (e) => {
+    //   const { name, value } = e.target;
+    //   setFormData({ ...formData, [name]: value });
+    // };
   
     const handleSubmit = (e) => {
       e.preventDefault();
   
       // Make a POST request to your API to register the user
       axios
-        .post('http://localhost/comp333-hw3-frontend/index.php/user/create', formData)
+        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/create', {username, password})
         .then((response) => {
-          console.log('User registered:', response.data);
+          console.log(response.data.msg);
           // You can redirect to a login page or display a success message here
         })
         .catch((error) => {
@@ -31,15 +29,15 @@ function RegistrationForm() {
     return (
       <div>
         <h1>User Registration</h1>
-        <form onSubmit={handleSubmit}>
+        <form action="" id="register" method="post" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username">Username:</label>
             <input
             type="text"
             id="username"
             name="username"
-            value={formData.username}
-            onChange={handleChange}
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </div>
@@ -49,8 +47,8 @@ function RegistrationForm() {
             type="password"
             id="password"
             name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </div>
