@@ -4,7 +4,10 @@ import Layout from "./components/Layout";
 import Login from "./components/login";
 import MainPage from "./components/mainpage";
 import Register from "./components/register";
-import Addnewsong from "./components/addnewsong";
+import AddNewSong from "./components/addnewsong";
+import View from "./components/view";
+import Update from "./components/update";
+import Delete from "./components/delete";
 
 export default function App() {
   return (
@@ -14,7 +17,10 @@ export default function App() {
           <Route index element={<Login />} />
           <Route path="mainpage" element={<MainPage />} />
           <Route path="register" element={<Register />} />
-          <Route path="addnewsong" element={<Addnewsong />} />
+          <Route path="addnewsong" element={<AddNewSong />} />
+          <Route path="view" element={<View />} />
+          <Route path="update" element={<Update />} />
+          <Route path="delete" element={<Delete />} />
         </Route>
       </Routes>
     </BrowserRouter>
