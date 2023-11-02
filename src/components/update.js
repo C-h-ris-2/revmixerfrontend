@@ -1,7 +1,7 @@
 import React, { useState} from 'react'; 
 import axios from 'axios';
   
-function View() {
+function Update() {
     const [artist, setArtist] = useState('');
     const[song, setSong] = useState('');
     const[rating, setRating] = useState('');
@@ -29,7 +29,7 @@ function View() {
   
     return (
       <div>
-        <h1>Add a new song!</h1>
+        <h1>Update song's rating!</h1>
         <form action="" id="addnewsong" method="post" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="artist">Artist:</label>
@@ -70,4 +70,4 @@ function View() {
   );
 }
 
-export default View;
+export default Update;

@@ -18,10 +18,9 @@ table {
     table-layout:fixed;
 }
 
-.icons{
-	padding-right: 100px;
+.react-icons {
+  vertical-align: middle;
 }
-
 
 th {
 	letter-spacing: 0.3px;

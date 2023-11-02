@@ -1,6 +1,6 @@
 import {useRef,useState,useEffect} from 'react';
 import axios from 'axios'; 
-
+import './forms.css';
 
   
 function Login (){ 
@@ -32,6 +32,8 @@ function Login (){
                 //clear input fields
                 setUsername('');
                 setPassword('');
+                localStorage.setItem("username",username)
+
             } else {
                 setErrMsg("Username or password is incorrect");
                 console.log(response.data.code);
