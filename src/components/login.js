@@ -24,40 +24,27 @@ function Login (){
         e.preventDefault();
         //debugging
 
-        // try {
-        //     let response = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", { params: { username, password } });
-        //     if (response.data.code === 0){
-        //         console.log(res.data);
-        //         setSuccess(true);
-        //         //clear input fields
-        //         setUsername('');
-        //         setPassword('');
-        //     } else {
-        //         setErrMsg("Username or password is incorrect");
-        //         console.log(response.data.code);
-        //     }
-        // }catch (err) {
-        //     if (!err?.res) {
-        //         setErrMsg("No Server Response");
-        //     }else {
-        //         setErrMsg("Login Failed");
-        //     }
-        //     errRef.current.focus();
-        // }
-        axios
-            .get("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", {params: {username, password}})
-            .then((response) => {
-                if (response.data.code === 0){
-                    console.log(response.data.msg);
-                    setSuccess(true);
-                } else {
-                    setErrMsg("Incorrect credentials");
-                    console.log(response.data.msg);
-                }
-            })
-            .catch((error) => {
-                console.error("Login error:", error);
-            });
+        try {
+            let response = await axios.post("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", { username, password });
+            if (response.data.code === 0){
+                console.log(response.data);
+                setSuccess(true);
+                //clear input fields
+                setUsername('');
+                setPassword('');
+            } else {
+                setErrMsg("Username or password is incorrect");
+                console.log(response.data.code);
+            }
+        }catch (err) {
+            if (!err?.response) {
+                setErrMsg("No Server Response");
+            }else {
+                setErrMsg("Login Failed");
+            }
+            errRef.current.focus();
+        }
+        
         
     };
 

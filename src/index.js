@@ -4,6 +4,7 @@ import Layout from "./components/Layout";
 import Login from "./components/login";
 import MainPage from "./components/mainpage";
 import Register from "./components/register";
+import Addnewsong from "./components/addnewsong";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route index element={<Login />} />
           <Route path="mainpage" element={<MainPage />} />
           <Route path="register" element={<Register />} />
+          <Route path="addnewsong" element={<Addnewsong />} />
         </Route>
       </Routes>
     </BrowserRouter>
