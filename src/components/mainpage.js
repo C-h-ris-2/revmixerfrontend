@@ -1,5 +1,8 @@
 import React, {useEffect, useState, Component} from 'react'; 
+import {Link, useLocation} from "react-router-dom";
+import { FaEdit, FaGlasses, FaTrashAlt } from 'react-icons/fa';
 import axios from "axios";
+import './mainpage.css';
   
 function MainPage (){ 
     const [posts, setPosts] = useState([]);
@@ -16,6 +19,10 @@ function MainPage (){
 
     query();
 
+    const imageClick = async(e) =>{
+        console.log('success')
+    }
+
     return (
         <div className="mainpageV">
             <h1>Main Page</h1>
@@ -27,16 +34,23 @@ function MainPage (){
                                 <th>Artist</th>
                                 <th>Song</th>
                                 <th>Rating</th>
+                                <th></th>
                             </tr>
                         </thead>
                 <tbody>
             {posts.map((r, i) =>(
                         <tr className="idV" key={i}>
-                            <td>{r.id}</td>
+                            {/* <td>{r.id}</td> */}
+                            <td><Link to="/view">{r.id}</Link></td>
                             <td>{r.username}</td>
                             <td>{r.artist}</td>
                             <td>{r.song}</td>
                             <td>{r.rating}</td>
+                            <td className='icons'>
+                                <FaGlasses />
+                                <FaEdit />
+                                <FaTrashAlt />
+                            </td>
                         </tr>
                     ))}
             </tbody>
