@@ -5,36 +5,61 @@ import axios from 'axios';
   
 function Login (){ 
     //set focus on first input
-    const userRef = useRef();
     //set focus on errors
     const errRef = useRef();
 
-    const[user, setUser] = useState('');
-    const[pwd, setPwd] = useState('');
+    const[username, setUsername] = useState('');
+    const[password, setPassword] = useState('');
     const[errMsg, setErrMsg] = useState('');
     //replace later: routing stage
     const[success, setSuccess] = useState(false);
 
-    useEffect(() => {
-        userRef.current.focus();
-    }, [])
 
     useEffect(() => {
         setErrMsg('');
-    }, [user,pwd])
+    }, [username,password])
 
+    
     const handleSubmit = async(e) =>{
         e.preventDefault();
         //debugging
-        let res = await axios.post("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", 
-        {user, pwd});
-        console.log(user,pwd);
-        setUser('');
-        setPwd('');
-        if (res.data.code == '0'){
-            setSuccess(true);
-        }
-    }
+
+        // try {
+        //     let response = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", { params: { username, password } });
+        //     if (response.data.code === 0){
+        //         console.log(res.data);
+        //         setSuccess(true);
+        //         //clear input fields
+        //         setUsername('');
+        //         setPassword('');
+        //     } else {
+        //         setErrMsg("Username or password is incorrect");
+        //         console.log(response.data.code);
+        //     }
+        // }catch (err) {
+        //     if (!err?.res) {
+        //         setErrMsg("No Server Response");
+        //     }else {
+        //         setErrMsg("Login Failed");
+        //     }
+        //     errRef.current.focus();
+        // }
+        axios
+            .get("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", {params: {username, password}})
+            .then((response) => {
+                if (response.data.code === 0){
+                    console.log(response.data.msg);
+                    setSuccess(true);
+                } else {
+                    setErrMsg("Incorrect credentials");
+                    console.log(response.data.msg);
+                }
+            })
+            .catch((error) => {
+                console.error("Login error:", error);
+            });
+        
+    };
 
     return(
         // jsx checking succcess
@@ -44,7 +69,7 @@ function Login (){
                 <h1>You are Logged in!</h1>
                 <br />
                 <p>
-                    <a href="#">Go to Home</a>
+                    <a href="/mainpage">Go to Home</a>
                 </p>
             </div>
          ) : ( 
@@ -58,10 +83,11 @@ function Login (){
                 <input 
                     type="text"
                     id="username"
-                    ref={userRef}
-                    onChange={(e)=>setUser(e.target.value)}
+                    name="username"
+                    value={username}
+                    placeholder={"Type here"}
+                    onChange={e=>setUsername(e.target.value)}
                     //control input: clear upon submission
-                    value={user}
                     required
                 />
 
@@ -69,12 +95,13 @@ function Login (){
                 <input 
                     type="password"
                     id="password"
-                    onChange={(e)=>setPwd(e.target.value)}
+                    name="password"
+                    value = {password}
+                    onChange={(e)=>setPassword(e.target.value)}
                     //control input: clear upon submission
-                    value={pwd}
                     required
                 />  
-                <button>Log In</button>
+                <button onClick={handleSubmit}>Log In</button>
             </form>
             <p>
                 Don't have an account?<br />
