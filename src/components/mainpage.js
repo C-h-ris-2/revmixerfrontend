@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Component} from 'react'; 
+import React, {useState} from 'react'; 
 import {Link} from "react-router-dom";
 import { FaPlusCircle, FaEdit, FaGlasses, FaTrashAlt } from 'react-icons/fa';
 import axios from "axios";
@@ -19,9 +19,9 @@ function MainPage (){
 
     query();
 
-    const imageClick = async(e) =>{
-        console.log('success')
-    }
+    // const imageClick = async(e) =>{
+    //     console.log('success')
+    // }
     
     let icons = { color: "white", padding: 20 , background: '#282652'};
     let icons2 = { color: "white", padding: 20 , background: '#282652'};
@@ -29,6 +29,7 @@ function MainPage (){
 
     return (
         <div className="mainpageV">
+            <p>You are logged in as {localStorage.getItem('username')}</p>
             <h1>Rev Mixer</h1>
             <Link to="/addnewsong"><FaPlusCircle style={icons2}/> Add a new song!</Link>
             <table>

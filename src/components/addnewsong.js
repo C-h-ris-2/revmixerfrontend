@@ -1,5 +1,5 @@
 import React, { useState} from 'react'; 
-import {redirect} from "react-router-dom";
+// import {redirect} from "react-router-dom";
 import axios from 'axios';
 // import {username} from './login.js';
   
@@ -8,12 +8,14 @@ function AddNewSong() {
     const [song, setSong] = useState('');
     const[rating, setRating] = useState('');
 
+    const username = localStorage.getItem('username')
+
     const handleSubmit = (e) => {
       e.preventDefault();
   
       // Make a POST request to your API to register the user
       axios
-        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/songinsert', { artist,song, rating})
+        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/songinsert', { username,artist,song, rating})
         .then((response) => {
           console.log(response.data.msg);
           <redirect to="/mainpage" />
