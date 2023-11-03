@@ -18,8 +18,9 @@ table {
     table-layout:fixed;
 }
 
-.react-icons {
+.icons {
   vertical-align: middle;
+  color: white;
 }
 
 th {
