@@ -24,7 +24,7 @@ function Login (){
         e.preventDefault();
         //debugging
         try {
-            let response = await axios.post("http://localhost/comp333hw3/index.php/user/login", { username, password });
+            let response = await axios.post("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", { username, password });
             if (response.data.code === 0){
                 console.log(response.data);
                 setSuccess(true);

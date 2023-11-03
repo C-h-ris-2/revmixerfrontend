@@ -17,10 +17,10 @@ function AddNewSong() {
   
       // Make a POST request to your API to register the user
       axios
-        .post('http://localhost/comp333hw3/index.php/user/songinsert', { username,artist,song, rating})
+        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/songinsert', { username,artist,song, rating})
         .then((response) => {
           console.log(response.data.msg);
-          <redirect to="/mainpage" />
+          <redirect to="/mainpage"/>
         })
         .catch((error) => {
           console.error('Error adding new song:', error);

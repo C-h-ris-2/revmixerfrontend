@@ -1,8 +1,9 @@
 import React, {useState} from 'react'; 
-import {Link} from "react-router-dom";
-import { FaPlusCircle, FaEdit, FaGlasses, FaTrashAlt, FaRegStar,FaStar } from 'react-icons/fa';
+import {Link, Navigate} from "react-router-dom";
+import { FaPlusCircle, FaEdit, FaTrashAlt, FaRegStar,FaStar } from 'react-icons/fa';
 import axios from "axios";
 import './mainpage.css';
+import Update from './update';
   
 function Stars(props){
     const starNum = props.id;
@@ -21,14 +22,21 @@ function Stars(props){
 
 function MainPage (){ 
     const [posts, setPosts] = useState([]);
+    const [update, setUpdate] = useState(false);
         
     let icons = { color: "white", padding: 20 , background: '#282652'};
     let icons2 = { color: "white", padding: 20 , background: '#282652'};
     let spacing = '20px'
 
 
+    const handleUpdate = (id) => {
+        localStorage.setItem("id", id);
+        setUpdate(!update);
+
+    }
+
     const query = async () => {
-        let response = await axios.get("http://localhost/comp333hw3/index.php/user/songlist", {});
+        let response = await axios.get("http://localhost:8080/comp333-hw3-frontend/index.php/user/songlist", {});
         if (response.data.code === 0) {
             setPosts(response.data.data);
         } else {
@@ -39,8 +47,8 @@ function MainPage (){
 
     query();
 
-    return (
-        <div className="mainpageV">
+    return (<div>
+        {!update && <div className="mainpageV">
             <p>You are logged in as {localStorage.getItem('username')}</p>
             <h1>Rev Mixer</h1>
             <Link to="/addnewsong"><FaPlusCircle padding="20px"/> Add a new song!</Link>
@@ -67,13 +75,27 @@ function MainPage (){
                                 <Stars id={r.rating}/>
                             </td>
                             <td>
-                                <Link to="/update"><FaEdit color="white" padding="20px" background="pink"/></Link>
-                                <Link to="/delete"><FaTrashAlt  margin-left= "20px"  color="white" padding="20px" background="pink"/></Link>
+                            {r.username === localStorage.getItem('username') && (
+                                <>
+                                {/* <Link to={"/update/"}>
+                                    <FaEdit color="white" />
+                                </Link> */}
+                                <button type="submit" onClick={handleUpdate({id: r.id})}>
+                                    <FaEdit color="white"/>
+                                </button>
+
+                                <Link to={"/delete/"}>
+                                    <FaTrashAlt color="white" />
+                                </Link>
+                                </>
+                            )}
                             </td>
                         </tr>
                     ))}
             </tbody>
         </table>
+        </div>}
+        {update && Update({id: localStorage.getItem("id"), setUpdate: setUpdate, update: update})}
         </div>
     );
 } 

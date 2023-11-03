@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
-function Update() {
+function Update({id, setUpdate, update}) {
     const [artist, setArtist] = useState('');
     const[song, setSong] = useState('');
     const[rating, setRating] = useState('');
@@ -18,7 +18,7 @@ function Update() {
   
       // Make a POST request to add song
       axios
-        .post('http://localhost/comp333hw3/index.php/user/updatesong', {artist,song,rating})
+        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/updatesong', {id,artist,song,rating})
         .then((response) => {
           console.log(response.data.msg);
           // You can redirect to a login page or display a success message here
@@ -60,6 +60,7 @@ function Update() {
         </div>
         <button type="submit">Update this rating!</button>
       </form>
+      <button type="submit" onClick={() => setUpdate(false)}>Home</button>
     </div>
   );
 }

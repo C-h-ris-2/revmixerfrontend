@@ -16,7 +16,7 @@ function View() {
   
       // Make a POST request to add song
       axios
-        .post('http://localhost/comp333hw3/index.php/user/create', {artist,song,rating})
+        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/create', {artist,song,rating})
         .then((response) => {
           console.log(response.data.msg);
           // You can redirect to a login page or display a success message here
