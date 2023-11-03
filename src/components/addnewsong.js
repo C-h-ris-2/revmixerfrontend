@@ -1,19 +1,23 @@
 import React, { useState} from 'react'; 
-import {redirect} from "react-router-dom";
+// import {redirect} from "react-router-dom";
 import axios from 'axios';
 // import {username} from './login.js';
-  
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
+
 function AddNewSong() {
     const [artist, setArtist] = useState('');
     const [song, setSong] = useState('');
-    const[rating, setRating] = useState('');
+    const [rating, setRating] = useState('');
+
+    const username = localStorage.getItem('username')
 
     const handleSubmit = (e) => {
       e.preventDefault();
   
       // Make a POST request to your API to register the user
       axios
-        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/songinsert', { artist,song, rating})
+        .post('http://localhost/comp333hw3/index.php/user/songinsert', { username,artist,song, rating})
         .then((response) => {
           console.log(response.data.msg);
           <redirect to="/mainpage" />
@@ -51,15 +55,7 @@ function AddNewSong() {
           />
         </div>
         <div>
-            <label htmlFor="rating">Rating:</label>
-            <input
-            type="rating"
-            id="rating"
-            name="rating"
-            value={rating}
-            onChange={e => setRating(e.target.value)}
-            required
-          />
+          <Rating style={{ maxWidth: 250 }} value={rating} onChange={setRating} />
         </div>
         <button type="submit">Submit New Song</button>
       </form>
