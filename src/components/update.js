@@ -1,6 +1,8 @@
 import React, { useState} from 'react'; 
 import axios from 'axios';
-  
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
+
 function Update() {
     const [artist, setArtist] = useState('');
     const[song, setSong] = useState('');
@@ -16,7 +18,7 @@ function Update() {
   
       // Make a POST request to add song
       axios
-        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/create', {artist,song,rating})
+        .post('http://localhost/comp333hw3/index.php/user/updatesong', {artist,song,rating})
         .then((response) => {
           console.log(response.data.msg);
           // You can redirect to a login page or display a success message here
@@ -26,8 +28,8 @@ function Update() {
           // Handle the registration error here
         });
     };
-  
-    return (
+
+    return(
       <div>
         <h1>Update song's rating!</h1>
         <form action="" id="addnewsong" method="post" onSubmit={handleSubmit}>
@@ -54,17 +56,9 @@ function Update() {
           />
         </div>
         <div>
-          <label htmlFor="rating">Rating:</label>
-          <input
-            type="rating"
-            id="rating"
-            name="rating"
-            value={rating}
-            onChange={e => setRating(e.target.value)}
-            required
-          />
+          <Rating style={{ maxWidth: 250 }} value={rating} onChange={setRating} />
         </div>
-        <button type="submit">Submit New Song!</button>
+        <button type="submit">Update this rating!</button>
       </form>
     </div>
   );
