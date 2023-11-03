@@ -23,15 +23,12 @@ function Login (){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         //debugging
-
         try {
             let response = await axios.post("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", { username, password });
             if (response.data.code === 0){
                 console.log(response.data);
                 setSuccess(true);
                 //clear input fields
-                setUsername('');
-                setPassword('');
                 localStorage.setItem("username",username)
 
             } else {
@@ -103,5 +100,5 @@ function Login (){
          </>
     )
 } 
-  
+
 export default Login;
