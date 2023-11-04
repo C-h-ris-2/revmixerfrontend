@@ -25,6 +25,7 @@ function Deletesong({id, setDeletesong, deletesong}) {
     };
     return (
       <div>
+        {/* visuals */}
         <h1>Are you sure you want to delete this rating?</h1>
         <form action="" id="deletesong" method="post" onSubmit={handleDelete}>
         <button type="submit">Delete Song</button>

@@ -7,6 +7,8 @@ import Update from './update';
 import Deletesong from './delete';
 import AddNewSong from './addnewsong';
   
+
+// shows number or stars based on display
 function Stars(props){
     const starNum = props.id;
     const stars = [];
@@ -23,6 +25,7 @@ function Stars(props){
 }
 
 function MainPage (){ 
+    // useStates to keep track of data and file
     const [posts, setPosts] = useState([]);
     const [update, setUpdate] = useState(false);
     const [deletesong, setDeletesong] = useState(false);
@@ -33,7 +36,7 @@ function MainPage (){
     let spacing = '20px'
 
     
-
+    // handles of each file
     const handleUpdate = (id, artist, song) => {
         localStorage.setItem("id", id);
         localStorage.setItem("artist", artist);
@@ -72,10 +75,10 @@ function MainPage (){
             <Link to="/">Logout</Link>
             <p>You are logged in as {localStorage.getItem('username')}</p>
             <h1>RevMixer</h1>
-            {/* <Link to="/addnewsong"><FaPlusCircle padding="20px"/> Add a new song!</Link> */}
             <button type="submit" onClick={() => handleAdd()}>
             <FaPlusCircle color="white" />
             </button>
+            {/* printing of table with all values*/}
             <table>
                         <thead>
                             <tr>
@@ -96,6 +99,7 @@ function MainPage (){
                             <td>{r.artist}</td>
                             <td>{r.song}</td>
                             <td>
+                                {/* printing invidual rating */}
                                 <Stars id={r.rating}/>
                             </td>
                             <td>
@@ -120,6 +124,7 @@ function MainPage (){
             </tbody>
         </table>
         </div>}
+        {/* passing individual ids */}
         {update && <Update id={localStorage.getItem("id")} setUpdate={setUpdate} artist={localStorage.getItem("artist")} song={localStorage.getItem("song")} />}
         {deletesong && <Deletesong id={localStorage.getItem("id")} setDeletesong={setDeletesong} deletesong={deletesong} />}
         {addnewsong && <AddNewSong setAddnewsong={setAddnewsong}/>}       

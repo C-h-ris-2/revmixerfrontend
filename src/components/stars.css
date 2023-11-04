@@ -1,7 +1,4 @@
-/* input[type ="radio"]{
-    display: none;
-} */
-
+/* to take little circle out */
 star{
     cursor: pointer;
     transition: color 200ms;

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
+/* Centering items for the forms */
 * {
     margin: 0;
     padding: 0;
@@ -30,6 +30,7 @@ a, a:visited {
     color: #fff;
 }
 
+/* inputs. password get hidden from viewer */
 input[type="text"],
 input[type="password"],
 button,

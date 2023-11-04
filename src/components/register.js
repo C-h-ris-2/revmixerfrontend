@@ -2,13 +2,9 @@ import React, { useState} from 'react';
 import axios from 'axios';
   
 function RegistrationForm({setRegister}) {
+  // useState to keep track of username and data
     const [username, setUsername] = useState('');
     const[password, setPassword] = useState('');
-      
-    // const handleChange = (e) => {
-    //   const { name, value } = e.target;
-    //   setFormData({ ...formData, [name]: value });
-    // };
   
     const handleSubmit = (e) => {
       e.preventDefault();

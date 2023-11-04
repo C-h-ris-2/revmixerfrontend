@@ -4,14 +4,10 @@ import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
 function Update({id, setUpdate, artistold, songold}) {
+  // useState keep track of updated fields
     const [artist, setArtist] = useState('');
     const[song, setSong] = useState('');
     const[rating, setRating] = useState('');
-      
-    // const handleChange = (e) => {
-    //   const { name, value } = e.target;
-    //   setFormData({ ...formData, [name]: value });
-    // };
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -60,6 +56,7 @@ function Update({id, setUpdate, artistold, songold}) {
           />
         </div>
         <div>
+          {/* Active rating system */}
           <Rating style={{ maxWidth: 250 }} value={rating} onChange={setRating} />
         </div>
         <button type="submit">Update this rating!</button>
