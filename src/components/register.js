@@ -1,7 +1,7 @@
 import React, { useState} from 'react'; 
 import axios from 'axios';
   
-function RegistrationForm() {
+function RegistrationForm({setRegister}) {
     const [username, setUsername] = useState('');
     const[password, setPassword] = useState('');
       
@@ -18,6 +18,7 @@ function RegistrationForm() {
         .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/create', {username, password})
         .then((response) => {
           console.log(response.data.msg);
+          localStorage.setItem("username",username)
           // You can redirect to a login page or display a success message here
         })
         .catch((error) => {
@@ -54,6 +55,7 @@ function RegistrationForm() {
         </div>
         <button type="submit">Register</button>
       </form>
+      <button type="submit" onClick={() => {setRegister(false)}}>Login</button>
     </div>
   );
 }

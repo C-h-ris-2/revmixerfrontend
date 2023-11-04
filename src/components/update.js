@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
-function Update({id, setUpdate, update}) {
+function Update({id, setUpdate, artistold, songold}) {
     const [artist, setArtist] = useState('');
     const[song, setSong] = useState('');
     const[rating, setRating] = useState('');
@@ -20,7 +20,9 @@ function Update({id, setUpdate, update}) {
       axios
         .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/updatesong', {id,artist,song,rating})
         .then((response) => {
+          console.log(id);
           console.log(response.data.msg);
+          setUpdate(false);
           // You can redirect to a login page or display a success message here
         })
         .catch((error) => {
@@ -40,6 +42,7 @@ function Update({id, setUpdate, update}) {
             id="artist"
             name="artist"
             value={artist}
+            placeholder= {artistold}
             onChange={e => setArtist(e.target.value)}
             required
           />
@@ -50,6 +53,7 @@ function Update({id, setUpdate, update}) {
             type="song"
             id="song"
             name="song"
+            placeholder={songold}
             value={song}
             onChange={e => setSong(e.target.value)}
             required
@@ -60,7 +64,7 @@ function Update({id, setUpdate, update}) {
         </div>
         <button type="submit">Update this rating!</button>
       </form>
-      <button type="submit" onClick={() => setUpdate(false)}>Home</button>
+      <button type="submit" onClick={() => setUpdate(false)}>Cancel</button>
     </div>
   );
 }

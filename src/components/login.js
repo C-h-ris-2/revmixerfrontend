@@ -1,9 +1,14 @@
 import {useRef,useState,useEffect} from 'react';
 import axios from 'axios'; 
 import './forms.css';
+import RegistrationForm from './register';
+import { useNavigate } from 'react-router-dom';
+
 
   
 function Login (){ 
+    const navigate = useNavigate();
+
     //set focus on first input
     //set focus on errors
     const errRef = useRef();
@@ -13,11 +18,16 @@ function Login (){
     const[errMsg, setErrMsg] = useState('');
     //replace later: routing stage
     const[success, setSuccess] = useState(false);
+    const[register, setRegister] = useState(false);
 
 
     useEffect(() => {
         setErrMsg('');
     }, [username,password])
+
+    const handleRegister = () => {
+        setRegister(!register);
+    }
 
     
     const handleSubmit = async(e) =>{
@@ -27,9 +37,10 @@ function Login (){
             let response = await axios.post("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", { username, password });
             if (response.data.code === 0){
                 console.log(response.data);
-                setSuccess(true);
+                navigate('/mainpage');
                 //clear input fields
                 localStorage.setItem("username",username)
+
 
             } else {
                 setErrMsg("Username or password is incorrect");
@@ -50,15 +61,7 @@ function Login (){
     return(
         // jsx checking succcess
          <>
-         {success ? (
-            <div>
-                <h1>You are Logged in!</h1>
-                <br />
-                <p>
-                    <a href="/mainpage">Go to Home</a>
-                </p>
-            </div>
-         ) : ( 
+         {!register &&
         <div>
             {/* screen reader announces error */}
             <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
@@ -91,13 +94,16 @@ function Login (){
             </form>
             <p>
                 Don't have an account?<br />
-                <span className="line">
-                    <a href="/register">Register</a>
-                </span>
+                <button type="submit" onClick={() => handleRegister()}>
+                    Register
+                </button>
             </p>
         </div>
-         )}
+         }
+        {register && <RegistrationForm setRegister={setRegister}/>}       
+
          </>
+         
     )
 } 
 

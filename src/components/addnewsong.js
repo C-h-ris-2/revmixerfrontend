@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
-function AddNewSong() {
+function AddNewSong({setAddnewsong}) {
     const [artist, setArtist] = useState('');
     const [song, setSong] = useState('');
     const [rating, setRating] = useState('');
@@ -20,7 +20,7 @@ function AddNewSong() {
         .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/songinsert', { username,artist,song, rating})
         .then((response) => {
           console.log(response.data.msg);
-          <redirect to="/mainpage"/>
+          setAddnewsong(false);
         })
         .catch((error) => {
           console.error('Error adding new song:', error);
@@ -59,6 +59,7 @@ function AddNewSong() {
         </div>
         <button type="submit">Submit New Song</button>
       </form>
+      <button type="submit" onClick={() => {setAddnewsong(false)}}>Cancel</button>
     </div>
   );
 }

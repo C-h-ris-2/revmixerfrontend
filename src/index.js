@@ -18,7 +18,6 @@ export default function App() {
           <Route path="mainpage" element={<MainPage />} />
           <Route path="register" element={<Register />} />
           <Route path="addnewsong" element={<AddNewSong />} />
-          <Route path="view" element={<View />} />
           <Route path="update" element={<Update />} />
           <Route path="delete" element={<Delete />} />
         </Route>
