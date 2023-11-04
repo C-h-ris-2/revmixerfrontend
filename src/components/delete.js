@@ -2,14 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
   
+// function to delete song
 function Deletesong({id, setDeletesong, deletesong}) {
-      
-    // const handleChange = (e) => {
-    //   const { name, value } = e.target;
-    //   setFormData({ ...formData, [name]: value });
-    // };
-  
+
+  // on submit
     const handleDelete = (e) => {
+      // reset values in text field
       e.preventDefault();
   
       // Make a POST request to your API to register the user

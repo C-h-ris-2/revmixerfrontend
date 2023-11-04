@@ -5,14 +5,19 @@ import axios from 'axios';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
+// add new song feature
 function AddNewSong({setAddnewsong}) {
+  // use states to keep track of changing values
     const [artist, setArtist] = useState('');
     const [song, setSong] = useState('');
     const [rating, setRating] = useState('');
 
+    // access username
     const username = localStorage.getItem('username')
 
+    // on submit
     const handleSubmit = (e) => {
+      // reset when submit
       e.preventDefault();
   
       // Make a POST request to your API to register the user
@@ -31,6 +36,7 @@ function AddNewSong({setAddnewsong}) {
     return (
       <div>
         <h1>Add a new song!</h1>
+        {/* view form */}
         <form action="" id="addnewsong" method="post" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="artist">Artist:</label>
@@ -55,6 +61,7 @@ function AddNewSong({setAddnewsong}) {
           />
         </div>
         <div>
+          {/* Interactive star rating feature */}
           <Rating style={{ maxWidth: 250 }} value={rating} onChange={setRating} />
         </div>
         <button type="submit">Submit New Song</button>
