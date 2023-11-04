@@ -5,7 +5,7 @@ import RegistrationForm from './register';
 import { useNavigate } from 'react-router-dom';
 
 
-  
+//   Function site
 function Login (){ 
     const navigate = useNavigate();
 
@@ -20,11 +20,12 @@ function Login (){
     const[success, setSuccess] = useState(false);
     const[register, setRegister] = useState(false);
 
-
+    // for debugging purposes
     useEffect(() => {
         setErrMsg('');
     }, [username,password])
 
+    // on submit: need to register
     const handleRegister = () => {
         setRegister(!register);
     }
@@ -34,6 +35,7 @@ function Login (){
         e.preventDefault();
         //debugging
         try {
+            // axios post to get username table
             let response = await axios.post("http://localhost:8080/comp333-hw3-frontend/index.php/user/login", { username, password });
             if (response.data.code === 0){
                 console.log(response.data);
@@ -41,12 +43,12 @@ function Login (){
                 //clear input fields
                 localStorage.setItem("username",username)
 
-
             } else {
                 setErrMsg("Username or password is incorrect");
                 console.log(response.data.code);
             }
         }catch (err) {
+            // error catching of server
             if (!err?.response) {
                 setErrMsg("No Server Response");
             }else {

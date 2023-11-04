@@ -4,7 +4,7 @@
     /* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
     color: white;
 }
-
+/* table visuals */
 table {
 	background: #000000;
 	border-collapse: collapse;
@@ -17,12 +17,13 @@ table {
     margin-right: auto;
     table-layout:fixed;
 }
-
+/* edit delete and add new song icons */
 .icons {
   vertical-align: middle;
   color: white;
 }
 
+/* headers */
 th {
 	letter-spacing: 0.3px;
 	text-shadow: 0 1px 1px #0800ff6b;
@@ -33,6 +34,7 @@ table > thead > tr > th {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* table elements */
 td {
 	background-color: #282652;
 	color: rgb(255, 255, 255);

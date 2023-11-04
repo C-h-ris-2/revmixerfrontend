@@ -1,3 +1,5 @@
+// DEFAULT PAGE IS NOW IN LOGIN!
+
 import logo from './logo.svg';
 import './App.css';
 
