@@ -22,6 +22,7 @@ npm start
 ```
 5) Access web server at http://localhost:3000
 
+
 # Team Contribution (Front End)
 
 - Cristi Gonzalez (65%)
