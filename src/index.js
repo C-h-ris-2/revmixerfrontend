@@ -7,7 +7,6 @@ import Login from "./components/login";
 import MainPage from "./components/mainpage";
 import Register from "./components/register";
 import AddNewSong from "./components/addnewsong";
-import View from "./components/view";
 import Update from "./components/update";
 import Delete from "./components/delete";
 
