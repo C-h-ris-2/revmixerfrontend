@@ -11,10 +11,13 @@ function RegistrationForm({setRegister}) {
   
       // Make a POST request to your API to register the user
       axios
-        .post('http://localhost:8080/comp333-hw3-frontend/index.php/user/create', {username, password})
+        .post('http://localhost/comp333hw3/index.php/user/create', {username, password})
         .then((response) => {
           console.log(response.data.msg);
           localStorage.setItem("username",username)
+          setUsername('');
+          setPassword('');
+          setRegister(false);
           // You can redirect to a login page or display a success message here
         })
         .catch((error) => {
