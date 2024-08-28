@@ -23,6 +23,10 @@ npm start
 5) Access web server at http://localhost:3000
 
 
+![image](https://github.com/user-attachments/assets/07e77b19-5a7e-4532-b02d-593a638d39bc)
+
+![Screenshot 2024-08-28 175654](https://github.com/user-attachments/assets/8120235e-ee4c-492d-9aff-d2e1fb7f569a)
+
 # Team Contribution (Front End)
 
 - Cristi Gonzalez (65%)
